@@ -2,47 +2,68 @@ import { useState, useEffect } from 'react'
 
 const API_URL = '/api/tasks'
 
+const defaultTasks = [
+  { id: '1', title: 'Set up project structure', status: 'done', priority: 'high', createdAt: new Date().toISOString() },
+  { id: '2', title: 'Build REST API', status: 'in-progress', priority: 'high', createdAt: new Date().toISOString() },
+  { id: '3', title: 'Create React frontend', status: 'todo', priority: 'medium', createdAt: new Date().toISOString() },
+  { id: '4', title: 'Add deployment pipeline', status: 'todo', priority: 'low', createdAt: new Date().toISOString() },
+]
+
+function loadTasks() {
+  const stored = localStorage.getItem('tasks')
+  return stored ? JSON.parse(stored) : defaultTasks
+}
+
+function saveTasks(tasks) {
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
 function App() {
   const [tasks, setTasks] = useState([])
   const [newTitle, setNewTitle] = useState('')
   const [newPriority, setNewPriority] = useState('medium')
   const [filter, setFilter] = useState('all')
+  const [useLocal, setUseLocal] = useState(false)
 
   useEffect(() => {
     fetchTasks()
   }, [])
 
+  useEffect(() => {
+    if (useLocal) saveTasks(tasks)
+  }, [tasks, useLocal])
+
   async function fetchTasks() {
-    const res = await fetch(API_URL)
-    const data = await res.json()
-    setTasks(data)
+    try {
+      const res = await fetch(API_URL)
+      if (!res.ok) throw new Error('API unavailable')
+      const data = await res.json()
+      setTasks(data)
+    } catch {
+      setUseLocal(true)
+      setTasks(loadTasks())
+    }
   }
 
-  async function addTask(e) {
+  function addTask(e) {
     e.preventDefault()
     if (!newTitle.trim()) return
-    const res = await fetch(API_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: newTitle, priority: newPriority }),
-    })
-    const task = await res.json()
+    const task = {
+      id: Date.now().toString(),
+      title: newTitle,
+      status: 'todo',
+      priority: newPriority,
+      createdAt: new Date().toISOString(),
+    }
     setTasks([...tasks, task])
     setNewTitle('')
   }
 
-  async function updateStatus(id, status) {
-    const res = await fetch(`${API_URL}/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status }),
-    })
-    const updated = await res.json()
-    setTasks(tasks.map(t => (t.id === id ? updated : t)))
+  function updateStatus(id, status) {
+    setTasks(tasks.map(t => (t.id === id ? { ...t, status } : t)))
   }
 
-  async function deleteTask(id) {
-    await fetch(`${API_URL}/${id}`, { method: 'DELETE' })
+  function deleteTask(id) {
     setTasks(tasks.filter(t => t.id !== id))
   }
 
