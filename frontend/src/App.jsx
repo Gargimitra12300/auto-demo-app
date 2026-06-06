@@ -57,7 +57,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🚀 Otto Task Tracker</h1>
+        <h1>🚀 Automation Task Tracker</h1>
         <p className="subtitle">Manage your tasks efficiently</p>
       </header>
 
