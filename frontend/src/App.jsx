@@ -55,16 +55,16 @@ function App() {
       priority: newPriority,
       createdAt: new Date().toISOString(),
     }
-    setTasks([...tasks, task])
+    setTasks(prev => [...prev, task])
     setNewTitle('')
   }
 
   function updateStatus(id, status) {
-    setTasks(tasks.map(t => (t.id === id ? { ...t, status } : t)))
+    setTasks(prev => prev.map(t => (t.id === id ? { ...t, status } : t)))
   }
 
   function deleteTask(id) {
-    setTasks(tasks.filter(t => t.id !== id))
+    setTasks(prev => prev.filter(t => t.id !== id))
   }
 
   const filteredTasks = filter === 'all' ? tasks : tasks.filter(t => t.status === filter)
@@ -121,9 +121,9 @@ function App() {
               <select value={task.status} onChange={e => updateStatus(task.id, e.target.value)}>
                 <option value="todo">Todo</option>
                 <option value="in-progress">In Progress</option>
-                <option value="done">Done</option>
+                <optimon value="done">Done</option>
               </select>
-              <button onClick={() => deleteTask(task.id)} className="delete-btn">✕</button>
+              <button type="button" onClick={() => deleteTask(task.id)} className="delete-btn">✕</button>
             </div>
           </div>
         ))}
