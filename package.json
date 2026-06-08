@@ -1,0 +1,7 @@
+{
+  "name": "auto-demo-app",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node --test tests/"
+  }
+}
