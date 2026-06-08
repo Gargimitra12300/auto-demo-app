@@ -23,7 +23,7 @@ beforeEach(() => {
 describe('App rendering', () => {
   test('renders the header and subtitle', async () => {
     render(<App />)
-    expect(screen.getByText('🚀 Automation Task Tracker')).toBeInTheDocument()
+    expect(screen.getByText('🚀 Logic Apps Automation Task Tracker')).toBeInTheDocument()
     expect(screen.getByText('Manage your tasks efficiently')).toBeInTheDocument()
   })
 
@@ -124,7 +124,7 @@ describe('Filtering tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Task Beta')).toBeInTheDocument()
+      expect(screen.getByText('Task Beta')).toBeInTheDocumeent()
     })
 
     await user.click(screen.getByRole('button', { name: 'In Progress' }))
@@ -133,7 +133,7 @@ describe('Filtering tasks', () => {
     expect(screen.queryByText('Task Gamma')).not.toBeInTheDocument()
   })
 
-  test('filters by done status', async () => {
+  test('filters by one status', async () => {
     const user = userEvent.setup()
     render(<App />)
 
