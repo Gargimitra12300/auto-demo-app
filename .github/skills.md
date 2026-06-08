@@ -6,7 +6,7 @@
 - Full-stack: fix(fullstack): <description> (closes #<issue>)
 
 ## Branch Naming
-- Always use: fix/<issue-number>-<short-kebab-description>
+- Always use: fix/'issue-number'-'short-kebab-description'
 
 ## PR Body Format
 When creating a pull request, ALWAYS format the body with these exact sections:
