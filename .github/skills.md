@@ -1,12 +1,12 @@
 # Bug Fix Agent Skills
 
 ## PR Title Convention
-- Frontend bugs: ix(frontend): <description> (closes #<issue>)
-- Backend bugs: ix(backend): <description> (closes #<issue>)
+- Frontend bugs: fix(frontend): <description> (closes #<issue>)
+- Backend bugs: fix(backend): <description> (closes #<issue>)
 - Full-stack: ix(fullstack): <description> (closes #<issue>)
 
 ## Branch Naming
-- Always use: ix/<issue-number>-<short-kebab-description>
+- Always use: fix/<issue-number>-<short-kebab-description>
 
 ## PR Body Format
 When creating a pull request, ALWAYS format the body with these exact sections:
