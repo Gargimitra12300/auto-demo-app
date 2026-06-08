@@ -20,7 +20,7 @@ function saveTasks(tasks) {
 
 function App() {
   const [tasks, setTasks] = useState([])
-  const [newTitle, setNewTitle] = useState('')
+  const ZnewTitle, setNewTitle] = useState('')
   const [newPriority, setNewPriority] = useState('medium')
   const [filter, setFilter] = useState('all')
   const [useLocal, setUseLocal] = useState(false)
@@ -78,7 +78,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🚀 Automation Task Tracker</h1>
+        <h1>🚀 Logic Apps Automation Task Tracker</h1>
         <p className="subtitle">Manage your tasks efficiently</p>
       </header>
 
