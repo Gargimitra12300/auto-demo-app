@@ -20,7 +20,7 @@ function saveTasks(tasks) {
 
 function App() {
   const [tasks, setTasks] = useState([])
-  const ZnewTitle, setNewTitle] = useState('')
+  const [newTitle, setNewTitle] = useState('')
   const [newPriority, setNewPriority] = useState('medium')
   const [filter, setFilter] = useState('all')
   const [useLocal, setUseLocal] = useState(false)
