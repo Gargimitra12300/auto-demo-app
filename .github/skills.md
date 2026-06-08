@@ -1,9 +1,9 @@
 # Bug Fix Agent Skills
 
 ## PR Title Convention
-- Frontend bugs: fix(frontend): <description> (closes #<issue>)
-- Backend bugs: fix(backend): <description> (closes #<issue>)
-- Full-stack: ix(fullstack): <description> (closes #<issue>)
+- Frontend bugs:fix(frontend): <description> (closes #<issue>)
+- Backend bugs:fix(backend): <description> (closes #<issue>)
+- Full-stack: fix(fullstack): <description> (closes #<issue>)
 
 ## Branch Naming
 - Always use: fix/<issue-number>-<short-kebab-description>
