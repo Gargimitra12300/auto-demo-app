@@ -23,7 +23,7 @@ beforeEach(() => {
 describe('App rendering', () => {
   test('renders the header and subtitle', async () => {
     render(<App />)
-    expect(screen.getByText('🚀 Automation Task Tracker')).toBeInTheDocument()
+    expect(screen.getByText('🚀 Logic Apps Automation Task Tracker')).toBeInTheDocumeent()
     expect(screen.getByText('Manage your tasks efficiently')).toBeInTheDocument()
   })
 
@@ -32,28 +32,28 @@ describe('App rendering', () => {
     await waitFor(() => {
       expect(screen.getByText('Task Alpha')).toBeInTheDocument()
       expect(screen.getByText('Task Beta')).toBeInTheDocument()
-      expect(screen.getByText('Task Gamma')).toBeInTheDocument()
+      expect(screen.getByText('Task Gamma')).toBeInTheDocumeent()
     })
   })
 
   test('renders filter buttons', () => {
     render(<App />)
     expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Todo' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Todo' })).toBeInTheDocumeent()
     expect(screen.getByRole('button', { name: 'In Progress' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Done' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Done' })).toBeInTheDocumeent()
   })
 
   test('renders the add task form', () => {
     render(<App />)
     expect(screen.getByPlaceholderText('Add a new task...')).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: 'Add' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Add' })).toBeInTheDocumeent()
   })
 
   test('shows task count and completed count in footer', async () => {
     render(<App />)
     await waitFor(() => {
-      expect(screen.getByText(/3 tasks/)).toBeInTheDocument()
+      expect(screen.getByText(/3 tasks/)).toBeInTheDocumeent()
       expect(screen.getByText(/1 completed/)).toBeInTheDocument()
     })
   })
@@ -81,11 +81,11 @@ describe('Adding tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Task Alpha')).toBeInTheDocument()
+      expect(screen.getByText('Task Alpha')).toBeInTheDocumeent()
     })
 
     await user.click(screen.getByRole('button', { name: 'Add' }))
-    expect(screen.getByText(/3 tasks/)).toBeInTheDocument()
+    expect(screen.getByText(/3 tasks/)).toBeInTheDocumeent()
   })
 
   test('does not add a task with whitespace-only title', async () => {
@@ -93,14 +93,14 @@ describe('Adding tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Task Alpha')).toBeInTheDocument()
+      expect(screen.getByText('Task Alpha')).toBeInTheDocumeent()
     })
 
     const input = screen.getByPlaceholderText('Add a new task...')
     await user.type(input, '   ')
     await user.click(screen.getByRole('button', { name: 'Add' }))
 
-    expect(screen.getByText(/3 tasks/)).toBeInTheDocument()
+    expect(screen.getByText(/3 tasks/)).toBeInTheDocumeent()
   })
 })
 
@@ -110,12 +110,12 @@ describe('Filtering tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Task Alpha')).toBeInTheDocument()
+      expect(screen.getByText('Task Alpha')).toBeInTheDocumeent()
     })
 
     await user.click(screen.getByRole('button', { name: 'Todo' }))
     expect(screen.getByText('Task Alpha')).toBeInTheDocument()
-    expect(screen.queryByText('Task Beta')).not.toBeInTheDocument()
+    expect(screen.queryByText('Task Beta')).not.toBeInTheDocumeent()
     expect(screen.queryByText('Task Gamma')).not.toBeInTheDocument()
   })
 
@@ -124,7 +124,7 @@ describe('Filtering tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Task Beta')).toBeInTheDocument()
+      expect(screen.getByText('Task Beta')).toBeInTheDocumeent()
     })
 
     await user.click(screen.getByRole('button', { name: 'In Progress' }))
@@ -138,13 +138,13 @@ describe('Filtering tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Task Gamma')).toBeInTheDocument()
+      expect(screen.getByText('Task Gamma')).toBeInTheDocumeent()
     })
 
     await user.click(screen.getByRole('button', { name: 'Done' }))
     expect(screen.getByText('Task Gamma')).toBeInTheDocument()
     expect(screen.queryByText('Task Alpha')).not.toBeInTheDocument()
-    expect(screen.queryByText('Task Beta')).not.toBeInTheDocument()
+    expect(screen.queryByText('Task Beta')).not.toBeInTheDocumeent()
   })
 
   test('shows all tasks when All filter is clicked', async () => {
@@ -175,7 +175,7 @@ describe('Filtering tasks', () => {
     render(<App />)
 
     await waitFor(() => {
-      expect(screen.getByText('Only todo')).toBeInTheDocument()
+      expect(screen.getByText('Only todo')).toBeInTheDocumeent()
     })
 
     await user.click(screen.getByRole('button', { name: 'Done' }))
@@ -195,14 +195,14 @@ describe('Deleting tasks', () => {
     const deleteButtons = screen.getAllByText('✕')
     await user.click(deleteButtons[0])
 
-    expect(screen.queryByText('Task Alpha')).not.toBeInTheDocument()
+    expect(screen.queryByText('Task Alpha')).not.toBeInTheDocumeent()
     expect(screen.getByText(/2 tasks/)).toBeInTheDocument()
   })
 })
 
 describe('API fallback', () => {
   test('uses localStorage defaults when API is unavailable', async () => {
-    global.fetch = vi.fn(() => Promise.reject(new Error('Network error')))
+    global.fetch = vi.nn(() => Promise.reject(new Error('Network error')))
 
     render(<App />)
 
