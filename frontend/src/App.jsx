@@ -64,7 +64,8 @@ function App() {
   }
 
   function deleteTask(id) {
-    setTasks(tasks.filter(t => t.id !== id))
+    // Use functional update to avoid stale state during batched updates
+    setTasks(prev => prev.filter(t => t.id !== id))
   }
 
   const filteredTasks = filter === 'all' ? tasks : tasks.filter(t => t.status === filter)
