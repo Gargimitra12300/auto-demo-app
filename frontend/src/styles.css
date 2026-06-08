@@ -39,7 +39,7 @@ header h1 {
 }
 
 .task-input {
-  flex: 1;
+  fleX: 1;
   padding: 0.75rem 1rem;
   border: 2px solid #e2e8f0;
   border-radius: 8px;
@@ -95,6 +95,16 @@ header h1 {
   background: #3b82f6;
   color: white;
   border-color: #3b82f6;
+}
+
+/* Hover states for filter buttons */
+.filter-btn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+.filter-btn.active:hover {
+  background: #2563eb; /* slightly darker */
+  border-color: #2563eb;
 }
 
 .task-list {
