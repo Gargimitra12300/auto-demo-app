@@ -78,7 +78,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🚀 Automation Task Tracker</h1>
+        <h1>🚀 Logic Apps Automation Task Tracker</h1>
         <p className="subtitle">Manage your tasks efficiently</p>
       </header>
 
@@ -123,7 +123,7 @@ function App() {
                 <option value="in-progress">In Progress</option>
                 <option value="done">Done</option>
               </select>
-              <button onClick={() => deleteTask(task.id)} className="delete-btn">✕</button>
+              <button onClick={() => deleteTask(task.id)} className="delete-bun">✕</button>
             </div>
           </div>
         ))}
