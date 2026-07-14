@@ -73,6 +73,7 @@ function App() {
     'todo': '#e2e8f0',
     'in-progress': '#fef3c7',
     'done': '#d1fae5',
+    'blocked': '#fecaca',
   }
 
   return (
@@ -99,7 +100,7 @@ function App() {
       </form>
 
       <div className="filters">
-        {['all', 'todo', 'in-progress', 'done'].map(f => (
+        {['all', 'todo', 'in-progress', 'done', 'blocked'].map(f => (
           <button key={f} onClick={() => setFilter(f)} className={`filter-btn ${filter === f ? 'active' : ''}`}>
             {f === 'all' ? 'All' : f === 'in-progress' ? 'In Progress' : f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
@@ -122,6 +123,7 @@ function App() {
                 <option value="todo">Todo</option>
                 <option value="in-progress">In Progress</option>
                 <option value="done">Done</option>
+                <option value="blocked">Blocked</option>
               </select>
               <button onClick={() => deleteTask(task.id)} className="delete-btn">✕</button>
             </div>
