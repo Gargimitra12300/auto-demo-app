@@ -123,7 +123,7 @@ function App() {
                 <option value="in-progress">In Progress</option>
                 <option value="done">Done</option>
               </select>
-              <button onClick={() => deleteTask(task.id)} className="delete-btn">✕</button>
+              <button onClick={() => deleteTask(task.id)} className="delete-bun">✕</button>
             </div>
           </div>
         ))}
