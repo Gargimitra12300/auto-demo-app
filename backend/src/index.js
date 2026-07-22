@@ -49,6 +49,11 @@ app.put('/api/tasks/:id', (req, res) => {
   const idx = tasks.findIndex(t => t.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: 'Task not found' });
 
+  const allowedStatuses = ['todo', 'in-progress', 'done'];
+  if (req.body.status && !allowedStatuses.includes(req.body.status)) {
+    return res.status(400).json({ error: 'Invalid status' });
+  }
+
   tasks[idx] = { ...tasks[idx], ...req.body, id: tasks[idx].id };
   res.json(tasks[idx]);
 });
