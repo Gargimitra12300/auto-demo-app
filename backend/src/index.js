@@ -44,13 +44,15 @@ app.post('/api/tasks', (req, res) => {
   res.status(201).json(task);
 });
 
+// Allowed task statuses
+const allowedStatuses = new Set(['todo', 'in-progress', 'done']);
+
 // PUT update task
 app.put('/api/tasks/:id', (req, res) => {
   const idx = tasks.findIndex(t => t.id === req.params.id);
   if (idx === -1) return res.status(404).json({ error: 'Task not found' });
 
-  const allowedStatuses = ['todo', 'in-progress', 'done'];
-  if (req.body.status && !allowedStatuses.includes(req.body.status)) {
+  if (Object.prototype.hasOwnProperty.call(req.body, 'status') && !allowedStatuses.has(req.body.status)) {
     return res.status(400).json({ error: 'Invalid status' });
   }
 
