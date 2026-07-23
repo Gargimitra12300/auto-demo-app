@@ -55,7 +55,7 @@ function App() {
       priority: newPriority,
       createdAt: new Date().toISOString(),
     }
-    setTasks!�...tasks, task])
+    setTasks([...tasks, task])
     setNewTitle('')
   }
 
@@ -69,12 +69,6 @@ function App() {
 
   const filteredTasks = filter === 'all' ? tasks : tasks.filter(t => t.status === filter)
 
-  // Build filters from baseline plus any statuses; exclude 'triage'
-  const baseFilters = ['all', 'todo', 'in-progress', 'done']
-  const dynamicFilters = Array.from(new Set(tasks.map(t => t.status)))
-  const availableFilters = Array.from(new Set([...baseFilters, ...dynamicFilters])).filter(s => s !== 'triage')
-
-
   const statusColors = {
     'todo': '#e2e8f0',
     'in-progress': '#fef3c7',
@@ -84,7 +78,7 @@ function App() {
   return (
     <div className="app">
       <header>
-        <h1>🚀 Automation Task Tracker</h1>
+        <h1>🚀 Logic Apps Automation Task Tracker</h1>
         <p className="subtitle">Manage your tasks efficiently</p>
       </header>
 
@@ -105,8 +99,7 @@ function App() {
       </form>
 
       <div className="filters">
-        {/* filter buttons sourced from dynamic statuses; 'triage' intentionally excluded */}
-        {availableFilters.map(f => (
+        {['all', 'todo', 'in-progress', 'done'].map(f => (
           <button key={f} onClick={() => setFilter(f)} className={`filter-btn ${filter === f ? 'active' : ''}`}>
             {f === 'all' ? 'All' : f === 'in-progress' ? 'In Progress' : f.charAt(0).toUpperCase() + f.slice(1)}
           </button>
