@@ -45,7 +45,7 @@ app.post('/api/tasks', (req, res) => {
 });
 
 // Allowed task statuses
-const allowedStatuses = new Set(['todo', 'in-progress', 'done', 'deployment']);
+const allowedStatuses = new Set(['todo', 'in-progress', 'done', 'blocked']);
 
 // PUT update task
 app.put('/api/tasks/:id', (req, res) => {
