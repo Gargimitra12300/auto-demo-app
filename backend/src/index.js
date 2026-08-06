@@ -45,7 +45,7 @@ app.post('/api/tasks', (req, res) => {
 });
 
 // Allowed task statuses
-const allowedStatuses = new Set(['todo', 'in-progress', 'done']);
+const allowedStatuses = new Set(['todo', 'in-progress', 'done', 'deployment']);
 
 // PUT update task
 app.put('/api/tasks/:id', (req, res) => {
@@ -75,7 +75,7 @@ app.get('/api/health', (req, res) => {
 });
 
 const server = app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
+  console.log('Backend running on http://localhost:' + PORT);
 });
 
 module.exports = app;
