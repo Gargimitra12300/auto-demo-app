@@ -45,6 +45,7 @@ app.post('/api/tasks', (req, res) => {
 });
 
 // Allowed task statuses
+// See issue #61: include 'deployed' status
 const allowedStatuses = new Set(['todo', 'in-progress', 'done', 'deployed']);
 
 // PUT update task
