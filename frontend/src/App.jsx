@@ -9,13 +9,22 @@ const defaultTasks = [
   { id: '4', title: 'Add deployment pipeline', status: 'todo', priority: 'low', createdAt: new Date().toISOString() },
 ]
 
+function sanitizeStatus(s) {
+  if (!s) return 'todo'
+  const v = s.toLowerCase()
+  return v === 'deployed' ? 'done' : v
+}
+function sanitizeTasks(list) {
+  return (list || []).map(t => ({ ...t, status: sanitizeStatus(t.status) }))
+}
 function loadTasks() {
   const stored = localStorage.getItem('tasks')
-  return stored ? JSON.parse(stored) : defaultTasks
+  const parsed = stored ? JSON.parse(stored) : defaultTasks
+  return sanitizeTasks(parsed)
 }
 
 function saveTasks(tasks) {
-  localStorage.setItem('tasks', JSON.stringify(tasks))
+  localStorage.setItem('tasks', JSON.stringify(sanitizeTasks(tasks)))
 }
 
 function App() {
@@ -38,7 +47,7 @@ function App() {
       const res = await fetch(API_URL)
       if (!res.ok) throw new Error('API unavailable')
       const data = await res.json()
-      setTasks(data)
+      setTasks(sanitizeTasks(data))
     } catch {
       setUseLocal(true)
       setTasks(loadTasks())
@@ -60,7 +69,7 @@ function App() {
   }
 
   function updateStatus(id, status) {
-    setTasks(tasks.map(t => (t.id === id ? { ...t, status } : t)))
+    setTasks(tasks.map(t => (t.id === id ? { ...t, status: sanitizeStatus(status) } : t)))
   }
 
   function deleteTask(id) {
