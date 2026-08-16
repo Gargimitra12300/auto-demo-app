@@ -1,6 +1,6 @@
 # Otto Demo App — Task Tracker
 
-A simple full-stack task tracker app with a **React frontend** and **Node.js/Express backend**.
+A simple full-stack task tracker app with a React frontend and Node.js/Express backend.
 
 ## Structure
 
@@ -40,4 +40,4 @@ Runs on http://localhost:5173
 
 ## Deploy
 
-This project includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds and deploys both frontend and backend on push to `main`.
+This project includes a GitHub Actions workflow (./.github/workflows/deploy.yml) that builds and deploys both frontend and backend on push to main.

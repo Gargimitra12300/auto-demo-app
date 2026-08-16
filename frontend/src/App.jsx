@@ -9,6 +9,7 @@ const defaultTasks = [
   { id: '4', title: 'Add deployment pipeline', status: 'todo', priority: 'low', createdAt: new Date().toISOString() },
 ]
 
+
 function loadTasks() {
   const stored = localStorage.getItem('tasks')
   return stored ? JSON.parse(stored) : defaultTasks
