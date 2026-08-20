@@ -73,6 +73,7 @@ function App() {
   const statusColors = {
     'todo': '#e2e8f0',
     'in-progress': '#fef3c7',
+    'pending-code-review': '#dbeafe',
     'done': '#d1fae5'
   }
 
@@ -100,10 +101,10 @@ function App() {
       </form>
 
       <div className="filters">
-        {['all', 'todo', 'in-progress', 'done'].map(function (fItem) {
+        {['all', 'todo', 'in-progress', 'pending-code-review', 'done'].map(function (fItem) {
           return (
             <button key={fItem} onClick={() => setFilter(fItem)} className={'filter-btn ' + (filter === fItem ? 'active' : '')}>
-              {fItem === 'all' ? 'All' : fItem === 'in-progress' ? 'In Progress' : fItem.charAt(0).toUpperCase() + fItem.slice(1)}
+              {fItem === 'all' ? 'All' : fItem === 'in-progress' ? 'In Progress' : fItem === 'pending-code-review' ? 'Pending Code Review' : fItem.charAt(0).toUpperCase() + fItem.slice(1)}
             </button>
           )
         })}
@@ -124,6 +125,7 @@ function App() {
               <select value={task.status} onChange={e => updateStatus(task.id, e.target.value)}>
                 <option value="todo">Todo</option>
                 <option value="in-progress">In Progress</option>
+                <option value="pending-code-review">Pending Code Review</option>
                 <option value="done">Done</option>
               </select>
               <button onClick={() => deleteTask(task.id)} className="delete-btn">✕</button>
